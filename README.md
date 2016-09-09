@@ -10,11 +10,15 @@ include 'json_helper.php';
 // 普通数组
 $val = array('a' => false, 'b' => true, 'c' => null, 'd'=> 0);
 echo api_json_encode($val);
+// 输出：{"a":false,"b":true,"c":"","d":"http://www.baidu.com/test.html","e":"我是中文"}
+
 echo "\n";
 
 // 对象
 $val = (object)array('a' => false, 'b' => true, 'c' => null, 'd'=> 0);
 echo api_json_encode($val);
+// 输出：{"a":false,"b":true,"c":"","d":"http://www.baidu.com/test.html","e":"我是中文"}
+
 echo "\n";
 
 // 多维数组
@@ -24,6 +28,8 @@ $val = array(
 	array('a' => false, 'b' => true, 'c' => array('a' => false, 'b' => true, 'c' => null, 'd'=> 0), 'd'=> 0),
 );
 echo api_json_encode($val);
+// 输出：[{"a":false,"b":true,"c":"","d":0},{"a":false,"b":true,"c":"","d":0},{"a":false,"b":true,"c":{"a":false,"b":true,"c":"","d":0},"d":0}]
+
 echo "\n";
 
 // 对象数组
@@ -33,19 +39,13 @@ $val = array(
 	(object)array('a' => false, 'b' => true, 'c' => array('a' => false, 'b' => true, 'c' => null, 'd'=> 0), 'd'=> 0),
 );
 echo api_json_encode($val);
+// 输出：[{"a":false,"b":true,"c":"","d":0},{"a":false,"b":true,"c":"","d":0},{"a":false,"b":true,"c":{"a":false,"b":true,"c":"","d":0},"d":0}]
+
+echo "\n";
 
 // jsonp
-// GET request sample.php?callbak=sdfkjaslifuoasdkfjslkjg
+// GET 请求 sample.php?callbak=abcdefghijk
 $val = array('a' => false, 'b' => true, 'c' => null, 'd'=> 0);
 echo api_jsonp_encode($val);
-```
-
-## 输出结果 (Result)
-
-```
-{"a":false,"b":true,"c":"","d":0}
-{"a":false,"b":true,"c":"","d":0}
-[{"a":false,"b":true,"c":"","d":0},{"a":false,"b":true,"c":"","d":0},{"a":false,"b":true,"c":{"a":false,"b":true,"c":"","d":0},"d":0}]
-[{"a":false,"b":true,"c":"","d":0},{"a":false,"b":true,"c":"","d":0},{"a":false,"b":true,"c":{"a":false,"b":true,"c":"","d":0},"d":0}]
-sdfkjaslifuoasdkfjslkjg({"a":false,"b":true,"c":"","d":0})
+// 输出：abcdefghijk({"a":false,"b":true,"c":"","d":"http://www.baidu.com/test.html","e":"我是中文"})
 ```
